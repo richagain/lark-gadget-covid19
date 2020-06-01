@@ -1,0 +1,54 @@
+<view class="weui-grids">
+  <view class="weui-grid" data-sort="NewConfirmed" data-sorttext="New Confirmed" bindtap="clickStat">
+    <text class="weui-grid__label grid-text">New Confirmed</text>
+    <text class="weui-grid__label">{{global.NewConfirmed}}</text>
+  </view>
+  <view class="weui-grid" data-sort="NewDeaths" data-sorttext="New Deaths" bindtap="clickStat">
+    <text class="weui-grid__label grid-text">New Deaths</text>
+    <text class="weui-grid__label">{{global.NewDeaths}}</text>
+  </view>
+  <view class="weui-grid" data-sort="NewRecovered" data-sorttext="New Recovered" bindtap="clickStat">
+    <text class="weui-grid__label grid-text">New Recovered</text>
+    <text class="weui-grid__label">{{global.NewRecovered}}</text>
+  </view>
+  <view class="weui-grid" data-sort="TotalConfirmed" data-sorttext="Total Confirmed" bindtap="clickStat">
+    <text class="weui-grid__label grid-text">Total Confirmed</text>
+    <text class="weui-grid__label">{{global.TotalConfirmed}}</text>
+  </view>
+  <view class="weui-grid" data-sort="TotalDeaths" data-sorttext="Total Deaths" bindtap="clickStat">
+    <text class="weui-grid__label grid-text">Total Deaths</text>
+    <text class="weui-grid__label">{{global.TotalDeaths}}</text>
+  </view>
+  <view class="weui-grid" data-sort="TotalRecovered" data-sorttext="Total Recovered" bindtap="clickStat">
+    <text class="weui-grid__label grid-text">Total Recovered</text>
+    <text class="weui-grid__label">{{global.TotalRecovered}}</text>
+  </view>
+</view>
+
+<view class="weui-cells__title">Data updated at: {{dataDate}} <button class="weui-btn weui-btn_mini weui-btn_primary btn-sm" bindtap="update">Update</button></view>
+<view class="weui-cells__title">Sort By: {{sortText}}</view>
+<block tt:for="{{countries}}">
+  <view class="page__bd">
+    <view class="weui-cells">
+      <view class="weui-cell ">
+        <view class="weui-cell__bd">
+          <text>{{index + 1}}: {{item.Country}}</text>
+        </view>
+        <view class="weui-cell__ft" tt:if="{{sort == 'NewConfirmed'}}">{{item.NewConfirmed}}</view>
+        <view class="weui-cell__ft" tt:if="{{sort == 'NewDeaths'}}">{{item.NewDeaths}}</view>
+        <view class="weui-cell__ft" tt:if="{{sort == 'NewRecovered'}}">{{item.NewRecovered}}</view>
+        <view class="weui-cell__ft" tt:if="{{sort == 'TotalConfirmed'}}">{{item.TotalConfirmed}}</view>
+        <view class="weui-cell__ft" tt:if="{{sort == 'TotalDeaths'}}">{{item.TotalDeaths}}</view>
+        <view class="weui-cell__ft" tt:if="{{sort == 'TotalRecovered'}}">{{item.TotalRecovered}}</view>
+      </viewiv>
+    </view>
+  </view>
+</block>
+
+<view tt:if="{{loading}}" style="display: block;">
+  <view class="weui-mask_transparent"></view>
+  <view class="weui-toast">
+    <i class="weui-loading weui-icon_toast"></i>
+    <text class="weui-toast__content">Loading...</text>
+  </view>
+</view>
